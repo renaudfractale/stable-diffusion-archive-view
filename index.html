@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Easy Diffusion Historique</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container">
+            <a href="#" class="navbar-brand">Easy Diffusion Archive</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link active">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="AboutGenerator.html" class="nav-link">About generator Web Site</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="AboutMe.html" class="nav-link">About Me</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+    <ul class="nav nav-pills justify-content-center">
+        <li class="nav-item">
+            <button class="nav-link" name="NavOrder" id="NavOrder_AntiChrono"
+                onclick="AfficheCards_Order_AntiChrono();">Reverse chronological order</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" name="NavOrder" id="NavOrder_Chrono"
+                onclick="AfficheCards_Order_Chrono();">Chronological order</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" name="NavOrder" id="NavOrder_Random"
+                onclick="AfficheCards_Order_Random();">Random</button>
+        </li>
+        <div class="navbar-nav">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search" id="SourceSearch">
+                <button type="button" class="btn btn-secondary" onclick="AfficheCards_Search();">Search in
+                    Prompt</button>
+            </div>
+        </div>
+    </ul>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5" id="mainDiv"
+        style="padding: 10px;">
+
+    </div>
+    <script>
+        const main = %%mainJson%%
+
+            let SourceSearch = document.getElementById("SourceSearch")
+        SourceSearch.addEventListener("keydown", function (e) {
+            if (e.code === "Enter") {  //checks whether the pressed key is "Enter"
+                AfficheCards_Search()
+            }
+        });
+        function SubAfficheCards(tabKeys) {
+            let divMain = document.getElementById("mainDiv")
+            divMain.innerText = ""
+            for (let i = 0; i < tabKeys.length; i++) {
+                const key = tabKeys[i]
+                const valueCard = main[key];
+
+                let col = document.createElement("div")
+                col.classList.add('col')
+                col.style.padding = "10px"
+
+                let card = document.createElement("div")
+                card.classList.add('card')
+                card.style.width = '18rem'
+
+                let img = document.createElement("img")
+                img.src = "images/" + valueCard.min
+                img.classList.add("card-img-top")
+                img.alt = valueCard.data.prompt
+
+                let card_body = document.createElement("div")
+                card_body.classList.add('card-body')
+
+                let h5 = document.createElement("h5")
+                card_body.classList.add('card-text')
+                h5.innerHTML = "Prompt"
+
+                let p = document.createElement("p")
+                p.classList.add('card-text')
+                p.innerHTML = valueCard.data.prompt
+
+                let a = document.createElement("a")
+                a.href = key + ".html"
+                a.className = "btn btn-primary"
+                a.innerHTML = "More Infos"
+                a.setAttribute("target", "_blank")
+
+                card_body.appendChild(h5)
+                card_body.appendChild(p)
+                card_body.appendChild(a)
+
+                card.appendChild(img)
+                card.appendChild(card_body)
+
+                col.appendChild(card)
+
+                divMain.appendChild(col)
+            }
+        }
+
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+
+        function ClearActiveNavOrder() {
+            let navItems = document.getElementsByName("NavOrder")
+            navItems.forEach(function (currentValue, currentIndex, listObj) {
+                console.log(`${currentValue}, ${currentIndex}, ${this}`);
+                currentValue.classList.remove("active")
+            });
+        }
+
+        function ActiveNavOrder(idValue) {
+            let navItem = document.getElementById(idValue)
+            navItem.classList.add("active")
+        }
+
+
+        function AfficheCards_Order_Chrono() {
+            ClearActiveNavOrder();
+            ActiveNavOrder("NavOrder_Chrono")
+            let tabKeys = []
+            for (const key in main) {
+                if (Object.hasOwnProperty.call(main, key) && key != "lastNb") {
+                    tabKeys.push(key)
+                }
+            }
+            SubAfficheCards(tabKeys)
+        }
+        function AfficheCards_Order_AntiChrono() {
+            ClearActiveNavOrder();
+            ActiveNavOrder("NavOrder_AntiChrono")
+            let tabKeys = []
+            for (const key in main) {
+                if (Object.hasOwnProperty.call(main, key) && key != "lastNb") {
+                    tabKeys.push(key)
+                }
+            }
+            tabKeys = tabKeys.reverse();
+            SubAfficheCards(tabKeys)
+        }
+        function AfficheCards_Order_Random() {
+            ClearActiveNavOrder();
+            ActiveNavOrder("NavOrder_Random")
+            let tabKeysTemps = []
+            for (const key in main) {
+                if (Object.hasOwnProperty.call(main, key) && key != "lastNb") {
+                    tabKeysTemps.push(key)
+                }
+            }
+            let tabKeys = []
+            while (tabKeysTemps.length > 0) {
+                const index = getRandomInt(tabKeysTemps.length - 1)
+                tabKeys.push(tabKeysTemps.splice(index, 1))
+            }
+            SubAfficheCards(tabKeys)
+        }
+
+        function AfficheCards_Search() {
+            ClearActiveNavOrder();
+            const texteKey = document.getElementById("SourceSearch").value
+            let tabKeys = []
+            for (const key in main) {
+                if (Object.hasOwnProperty.call(main, key) && key != "lastNb") {
+                    const element = main[key]
+                    if (element.data.prompt.includes(texteKey))
+                        tabKeys.push(key)
+                }
+            }
+            tabKeys = tabKeys.reverse();
+            SubAfficheCards(tabKeys)
+        }
+        AfficheCards_Order_AntiChrono();
+
+    </script>
+    <footer class="mt-auto">
+        <figure class="text-center">
+            <p>Copyright © 2023 - 2024 <a href="https://renaud-henry.me/">Renaud HENRY</a></p>
+        </figure>
+    </footer>
+</body>
+
+</html>
