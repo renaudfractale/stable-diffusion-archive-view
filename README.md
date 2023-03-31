@@ -1,6 +1,14 @@
 # <u>Stable diffusion archive view</u>
 
-1.  Paramètres d’exportation de Easy Diffusion
+1.  Pour Initialiser le projet :
+
+Supprimez :
+
+- stable-diffusion-archive-view\\ main.json
+
+- stable-diffusion-archive-view\SiteWeb\images\\.\*
+
+2.  Paramètres d’exportation de Easy Diffusion
 
 Il faut obtenir la figure 1:
 
@@ -14,10 +22,10 @@ Il faut obtenir la figure 1:
 
 Figure : Paramètres d’exportation de Easy Diffusion
 
-2.  Mettre les Images téléchargées dans
+3.  Mettre les Images téléchargées dans
     « stable-diffusion-archive-view\SiteWeb\images »
 
-3.  Installer les packages nodeJs :
+4.  Installer les packages nodeJs :
 
 Commande : « npm install »
 
@@ -29,7 +37,7 @@ Résultat :
 >
 > found 0 vulnerabilities
 
-4.  Créer la liste internet en locale
+5.  Créer la liste internet en locale
 
 Commande : « npm start »
 

@@ -1,9 +1,9 @@
 {
     "lastNb": 2,
     "00000": {
-        "full": "00505.jpeg",
-        "min": "00505_min.jpg",
-        "json": "00505.json",
+        "full": "00000.jpeg",
+        "min": "00000_min.jpg",
+        "json": "00000.json",
         "data": {
             "prompt": "a photograph of an astronaut riding a horse",
             "seed": 5434601,
@@ -32,9 +32,9 @@
         }
     },
     "00001": {
-        "full": "00506.jpeg",
-        "min": "00506_min.jpg",
-        "json": "00506.json",
+        "full": "00001.jpeg",
+        "min": "00001_min.jpg",
+        "json": "00001.json",
         "data": {
             "prompt": "a photograph of an astronaut riding a horse",
             "seed": 6510789,
