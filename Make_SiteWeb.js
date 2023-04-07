@@ -193,7 +193,12 @@ fs.readdir(directoryPath, function (err, files) {
           //On li le fichier template "ItemsFile"
           let Items = fs.readFileSync(ItemsFile, { encoding: "utf-8" });
           //On ajoute à "LesItems", le code HTML mise à a jour de "ItemsFile"
-          LesItems=LesItems+Items.replaceAll("%%Titre%%",key2).replaceAll("%%Texte%%",element2.toString())
+          try {
+            LesItems=LesItems+Items.replaceAll("%%Titre%%",key2).replaceAll("%%Texte%%",element2.toString())
+          } catch (error) {
+            LesItems=LesItems+Items.replaceAll("%%Titre%%",key2).replaceAll("%%Texte%%","None")
+          }
+         
         }
       }
       //On écrit le fichier "%ID.html" avec les données générique mise à joure par rapport au données de "element" 
