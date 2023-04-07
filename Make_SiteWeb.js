@@ -145,6 +145,26 @@ fs.readdir(directoryPath, function (err, files) {
 
           //On efface l'image en Base64 par un boléen 
           JsonValues.init_image = true;
+        } else if(JsonValues.init_img) {
+
+
+          // Je récupére le String en Base64
+          const RawDataImage = JsonValues.init_img
+          // J'extrait les infot utile (extention de fichier + Image Data en Base64)
+          const DataImage = RegexDataImage.exec(RawDataImage)
+
+          // Nom du Fichier master, qui a été utilisé pour générer l'image de sortie
+          const Master = path.join(folderBase, newFileMaster+DataImage.groups.extension);
+          
+          //Je crée le fichier master qui a été utilisé pour générer l'image de sortie
+          decode_base64(DataImage.groups.data, Master);
+
+          //On ajoute dans la base de données "MainData" le lien vers l'image master
+          MainData[BaseFileNo].master = newFileMaster+DataImage.groups.extension;
+
+          //On efface l'image en Base64 par un boléen 
+          JsonValues.init_image = true;
+          delete JsonValues.init_img
         } else {
           //On efface l'image en Base64 par un boléen 
           JsonValues.init_image = false;
