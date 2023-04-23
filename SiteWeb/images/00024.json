@@ -1,0 +1,21 @@
+{
+    "model": "stable diffusion",
+    "model_weights": "stable-diffusion-1.5",
+    "model_hash": "ae51ca560481dd74ab9f204eee411ff99aa85faf4bdfd9c8cb0d0136c41fb3f6",
+    "app_id": "invoke-ai/InvokeAI",
+    "app_version": "3.0.0+a0",
+    "prompt": "dog, style low polygon",
+    "steps": 50,
+    "cfg_scale": 7.5,
+    "threshold": 0,
+    "perlin": 0,
+    "height": 512,
+    "width": 512,
+    "seed": 2403752029,
+    "hires_fix": false,
+    "seamless": false,
+    "type": "txt2img",
+    "postprocessing": null,
+    "sampler": "k_lms",
+    "variations": []
+}

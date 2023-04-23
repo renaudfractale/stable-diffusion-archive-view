@@ -1,0 +1,32 @@
+{
+    "model": "stable diffusion",
+    "model_weights": "stable-diffusion-1.5",
+    "model_hash": "ae51ca560481dd74ab9f204eee411ff99aa85faf4bdfd9c8cb0d0136c41fb3f6",
+    "app_id": "invoke-ai/InvokeAI",
+    "app_version": "2.3.4",
+    "prompt": "xenomorph from alien painting,  concept art fantasy epic futuristic, art by ,  bruce pennington, in the style of ,  Pixar Ghibli,  electric arc neon lamp natural lighting,  trending on artstation complex picture intricate details elegant highly detailed post-processing  [bad anatomy, bad proportions, blurry, cloned face,deformed, dehydrated, disfigured]",
+    "steps": 100,
+    "cfg_scale": 7.5,
+    "threshold": 0,
+    "perlin": 0,
+    "height": 2048,
+    "width": 2048,
+    "seed": 2870640715,
+    "hires_fix": false,
+    "seamless": false,
+    "type": "txt2img",
+    "postprocessing": [
+        {
+            "type": "gfpgan",
+            "strength": 0.75
+        },
+        {
+            "type": "esrgan",
+            "scale": 4,
+            "denoise_str": 0.75,
+            "strength": 0.75
+        }
+    ],
+    "sampler": "k_lms",
+    "variations": []
+}

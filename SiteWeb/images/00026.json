@@ -1,0 +1,32 @@
+{
+    "model": "stable diffusion",
+    "model_weights": "openjourney-4.0",
+    "model_hash": "8d332f6ce94c5d03a009942f4e81d0f00d470c2266bc50fdb1cba2711bb0fa62",
+    "app_id": "invoke-ai/InvokeAI",
+    "app_version": "2.3.4",
+    "prompt": "xenomorph from alien the movie,  digital painting,  neon technological surrealist, art by ,  bruce pennington, in the style of ,  Lovecraft , electric arc crepuscular rays,  highly detailed ultra realistic reflections Octane hyper realistic 4k [bad anatomy, bad proportions, blurry, cloned face,deformed, dehydrated, disfigured]",
+    "steps": 100,
+    "cfg_scale": 7.5,
+    "threshold": 0,
+    "perlin": 0,
+    "height": 512,
+    "width": 512,
+    "seed": 2167432826,
+    "hires_fix": false,
+    "seamless": false,
+    "type": "txt2img",
+    "postprocessing": [
+        {
+            "type": "gfpgan",
+            "strength": 0.75
+        },
+        {
+            "type": "esrgan",
+            "scale": 4,
+            "denoise_str": 0,
+            "strength": 0.75
+        }
+    ],
+    "sampler": "k_lms",
+    "variations": []
+}

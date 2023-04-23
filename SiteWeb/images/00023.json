@@ -1,0 +1,21 @@
+{
+    "model": "stable diffusion",
+    "model_weights": "openjourney-4.0",
+    "model_hash": "8d332f6ce94c5d03a009942f4e81d0f00d470c2266bc50fdb1cba2711bb0fa62",
+    "app_id": "invoke-ai/InvokeAI",
+    "app_version": "3.0.0+a0",
+    "prompt": "cat, style  low polygon [bad body]",
+    "steps": 50,
+    "cfg_scale": 7.5,
+    "threshold": 0,
+    "perlin": 0,
+    "height": 512,
+    "width": 512,
+    "seed": 1597534536,
+    "hires_fix": false,
+    "seamless": false,
+    "type": "txt2img",
+    "postprocessing": null,
+    "sampler": "k_lms",
+    "variations": []
+}
