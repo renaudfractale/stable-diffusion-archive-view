@@ -28,13 +28,14 @@ fs.readdir(directoryPath, function (err, files) {
         path.join(folderBase, file.substring(0, file.length - 3) + "json")
       )
     ) {
-      // J'ajoute dans "JsonFiles" le fichier JSON
-      //JsonFiles.push(file);
       console.log(file);
       const s = png.readFileSync(path.join(folderBase, file));
       const list = png.splitChunk(s);
       try {
         list.forEach((element) => {
+          console.log("******************************************");
+          console.log("element.type = " + element.type);
+          console.log("element.data = " + element.data);
           if (
             ("tEXt" == element.type) &
             element.data.startsWith("sd-metadata")
@@ -85,6 +86,8 @@ fs.readdir(directoryPath, function (err, files) {
       } catch (error) {
         console.log(error);
       }
+
+      throw "fin";
     }
   });
 });
